@@ -18,6 +18,9 @@ func _physics_process(delta):
 		anim.play("move")
 	else: anim.stop()
 	move_and_slide(dir * speed)
+	
+#	if Input.is_action_just_pressed("action"):
+#		inventory.drop()
 
 func control():	
 	if Input.is_action_just_pressed("action"):
@@ -25,17 +28,10 @@ func control():
 			if inventory.get_item() != null:
 				inventory.drop()
 			else:
-				inventory.add(interaction)
+				inventory.add(interaction.duplicate())
 				interaction.remove()
 				interaction = null
 		else:
 			if inventory.get_item() != null:
 				inventory.drop()
 
-
-func _on_DetectInteraction_area_entered(area):
-	if area is Item:
-		interaction = area
-
-func _on_DetectInteraction_area_exited(area):
-	interaction = null

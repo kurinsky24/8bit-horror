@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://src/player.png" type="Texture" id=2]
@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 6 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "move"
 length = 0.6
 loop = true
@@ -24,8 +24,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 0 ]
 }
-
-[sub_resource type="RectangleShape2D" id=2]
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 82, 50 )
@@ -44,18 +42,10 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 16, 31 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/move = SubResource( 3 )
+anims/move = SubResource( 2 )
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="DetectInteraction" type="Area2D" parent="."]
-editor/display_folded = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectInteraction"]
-position = Vector2( 0, 12 )
-shape = SubResource( 2 )
-
 [node name="SpawnPoint" type="Position2D" parent="."]
-[connection signal="area_entered" from="DetectInteraction" to="." method="_on_DetectInteraction_area_entered"]
-[connection signal="area_exited" from="DetectInteraction" to="." method="_on_DetectInteraction_area_exited"]
+position = Vector2( 0, 28 )
